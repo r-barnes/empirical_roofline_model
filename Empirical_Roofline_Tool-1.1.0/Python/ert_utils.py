@@ -2,12 +2,12 @@ import operator,subprocess,sys,os.path
 
 # Make a list into a space seperated string
 def list_2_string(text_list):
-  return reduce(operator.add,[t+" " for t in text_list])
+  return ''.join([str(t)+" " for t in text_list])
 
 # Execute a command without generating a new shell
 def execute_noshell(command,echo=True):
   if echo:
-    print "   ",list_2_string(command)
+    print("   ",list_2_string(command))
     sys.stdout.flush()
 
   if subprocess.call(command,shell=False) != 0:
@@ -19,9 +19,9 @@ def execute_noshell(command,echo=True):
 def execute_shell(command,echo=True):
   if echo:
     if isinstance(command,list):
-      print "   ",command[0]
+      print("   ",command[0])
     else:
-      print "   ",command
+      print("   ",command)
     sys.stdout.flush()
 
   if subprocess.call(command,shell=True) != 0:
@@ -33,7 +33,7 @@ def execute_shell(command,echo=True):
 # and return any output from "stdout"
 def stdout_noshell(command,echo=True):
   if echo:
-    print "   ",list_2_string(command)
+    print("   ",list_2_string(command))
     sys.stdout.flush()
 
   p = subprocess.Popen(command,shell=False,stdout=subprocess.PIPE)
@@ -49,9 +49,9 @@ def stdout_noshell(command,echo=True):
 def stdout_shell(command,echo=True):
   if echo:
     if isinstance(command,list):
-      print "   ",command[0]
+      print("   ",command[0])
     else:
-      print "   ",command
+      print("   ",command)
     sys.stdout.flush()
 
   p = subprocess.Popen(command,shell=True,stdout=subprocess.PIPE)
